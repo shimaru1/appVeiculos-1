@@ -6,7 +6,10 @@
   @csrf
   <div class="col-md-12">
     <label for="inputModelo" class="form-label">Modelo</label>
-    <input type="text" name="modelo" class="form-control" id="inputModelo" placeholder="Corsa">
+    <input type="text" name="modelo" value="{{old('modelo')}}" class="form-control" id="inputModelo" placeholder="Corsa">
+    @error('modelo')
+        <div class="text-sm-start text-light">*Preencher o campo modelo.</div>
+        @enderror
   </div>
   
   <div class="col-12">
@@ -23,8 +26,8 @@
   </div>
  
   <div class="col-md-12">
-    <label for="inputZip" name="valor" class="form-label">Valor</label>
-    <input type="text" class="form-control" id="inputZip" placeholder="10.000">
+    <label for="inputZip"  class="form-label">Valor</label>
+    <input type="text" name="valor" class="form-control" id="inputZip" placeholder="10.000">
   </div>
   
   <div class="col-12">

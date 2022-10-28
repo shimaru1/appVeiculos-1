@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CaminhaoController;
+use App\Http\Controllers\CarroController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::post('/cadastrar-caminhao',[CaminhaoController::class,'SalvarBanco'])->na
 Route::delete('/editar-caminhao/{registrosCaminhoes}',[CaminhaoController::class,'ApagarBancoCaminhao'])->name('apagar-caminhao');
 //alterar caminhao
 Route::get('/alterar-caminhao/{registrosCaminhoes}',[CaminhaoController::class,'MostrarAlterarCaminhao'])->name('alterar-caminhao');
-Route::put('/editar-caminhao/{registrosCaminhoes}',[CaminhaoController::class,'alterrarBancoCaminhao'])->name('alterar-banco-caminhao');
+Route::put('/editar-caminhao/{registrosCaminhoes}',[CaminhaoController::class,'AlterarBancoCaminhao'])->name('alterar-banco-caminhao');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -41,4 +42,4 @@ Route::delete('/editar-carro/{registrosCarros}',[CarroController::class,'ApagarB
 
 //alterar caminhao
 Route::get('/alterar-carro/{registrosCarros}',[CarroController::class,'MostrarAlterarCarro'])->name('alterar-carro');
-Route::put('/editar-carro/{registrosCarros}',[CarroController::class,'alterrarBancoCarro'])->name('alterar-banco-carro');
+Route::put('/editar-carro/{registrosCarros}',[CarroController::class,'AlterarBancoCarro'])->name('alterar-banco-carro');

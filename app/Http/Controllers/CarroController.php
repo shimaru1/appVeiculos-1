@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
-use App\Models\Carro;
+use App\Models\Carros;
+
 
 class CarroController extends Controller
 {
@@ -12,20 +13,23 @@ class CarroController extends Controller
         return view('cadastrarCarro');
     }
 
-    public function MostrarEditarCarro(){
+    public function MostrarEditarCarro(Request $request){
 
-        $dadosCarro = Carro::all();
-        //dd($dadosCaminhao);
-       
-        $dadosCarro = Carro::query();
-        $dadosCarro->when($request->marca,function($query,$v1){
-            $query->where('marca','like','%'.$v1.'%');
+       //$dadosCarro = Carro::all();
+        //dd($dadosCarro);
 
+        $dadosCarro = Carros::query();
+        $dadosCarro->when($request->marca,function($query, $vl){
+            $query->where('marca','like','%'.$vl.'%');
         });
+
+        $dadosCarro = $dadosCarro->get();
+
+
         return view('editarCarro',[
-            'resgistrarCarro'=>$dadosCarro
+            'registrosCarro' => $dadosCarro
         ]);
-        $dadosCarro =$dadosCarro->get();
+        
     }
 
     public function SalvarBancoCarro(Request $request){
@@ -35,35 +39,38 @@ class CarroController extends Controller
             'marca' => 'string|required',
             'ano' =>'string|required',
             'cor' => 'string|required',
-            'valor' => 'string|nullable'
+            'valor' => 'string|required'
         ]);
 
-        Carro::create($dadosCarro);
+        Carros::create($dadosCarro);
         return Redirect::route('home');
     }
 
-    public function ApagarBancoCarro(Carro $registrosCarro){
+    public function ApagarBancoCarro(Carros $registrosCarros){
         //dd($registrosCarros);
         $registrosCarros->delete();
         //Carro::findOrFail($id)->delete();
         return Redirect::route('editar-carro');
     }
 
-    public function MostrarAlterarCarro(Carro $registrosCarros){
-        return view('alterarCarros',['registrosCarros' => $registrosCarros]);
+    public function MostrarAlterarCarro(Carros $registrosCarros){
+        return view('alterarCarro',['registrosCarros' => $registrosCarros]);
     }
 
-    public function AlterarBancoCarro(Carro $registrosCarros, Request $request){
+    public function AlterarBancoCarro(Carros $registrosCarros, Request $request){
         $banco = $request->validate([
             'modelo' => 'string|required',
             'marca' => 'string|required',
-            'ano' => 'string|required',
+            'ano' =>'string|required',
             'cor' => 'string|required',
             'valor' => 'string|required'
 
         ]);
-        $registrosCarros -> fill($banco);
+
+        $registrosCarros->fill($banco);
         $registrosCarros->save();
         return Redirect::route('editar-carro');
+
     }
+
 }

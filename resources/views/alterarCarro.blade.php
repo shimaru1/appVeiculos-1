@@ -24,12 +24,12 @@
   </div>
  
   <div class="col-md-12">
-    <label for="inputZip" name="valor" class="form-label">Valor</label>
-    <input type="text" value="{{old('valor',$registrosCarros->valor)}}" class="form-control" id="inputZip" placeholder="10.000">
+    <label for="inputZip"  class="form-label">Valor</label>
+    <input type="text" name="valor" value="{{old('valor',$registrosCarros->valor)}}" class="form-control" id="inputZip" placeholder="10.000">
   </div>
   
   <div class="col-12">
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <button type="submit" class="btn btn-primary">Atualizar</button>
   </div>
 </form>
 </div>
